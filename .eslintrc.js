@@ -32,4 +32,10 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
   },
+   "overrides": [
+    {
+      "files": ["*.spec.ts", "*.test.ts", "test/**/*.ts"],
+      // Your test-specific ESLint rules here
+    }
+  ]
 };

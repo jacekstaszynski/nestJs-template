@@ -1,24 +1,30 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always"
   },
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.validate": ["typescript", "typescriptreact", "**/**.spec.ts",
+    "**/**.test.ts"],
   "editor.rulers": [100],
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.options": {
+    "overrideConfigFile": ".eslintrc.js"
   },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": null
+
+  "eslint.alwaysShowStatus": true,
+  "editor.colorDecorators": true,
+  "workbench.colorCustomizations": {
+    "editorError.foreground": "#ff0000",
+    "editorWarning.foreground": "#c48716",
+    "editorInfo.foreground": "#2196f3"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": null
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": null
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
   }
 }
