@@ -16,13 +16,22 @@ This document is a set of rules and best practices that we follow in our project
 This structure is inspired by hexagonal architecture (we do not follow it strictly) with focus on separation of business domain. Idea is to separate core business domain from infrastructure (dbs/queues/APIs...) to be able to easily replace dependencies without changing business logic and to be able to test business logic without infrastructure.
 </em></strong>
 
-![code_of_conduct.png](./static/code_of_conduct.png)
 
-`Port` is our facade (example.facade) <br>
-`Adapter` is our implementation (example.repository) <br>
-`Domain` is our business layer (example.service)
+Structure for each module should be consistent and follow the same pattern:
+- `src/example/example.module.ts` - Module
+- `src/example/domain/example.service.ts` - Service
+- `src/example/domain/type/example.filter.ts` - Filter
+- `src/example/out/example.repository.ts` - Repository
+- `src/example/in/example.controller.ts` - Controller
+- `src/example/in/type/example.request.ts` - Request
+- `src/example/in/type/example.response.ts` - Response
+- `src/example/example.favade.ts` - Faced which represents all reusable methods, only facade is exported via model
 
-![code_of_conduct_1.png](./static/code_of_conduct_1.png)
+
+'Out' represents data that is leaving the module (repository, external API connections etc)  <br/>
+'In' represents data that is coming into the module (request, response, controller etc) <br/>
+'Domain' represents business logic
+
 
 In each module we can have more than one controller, service, repository, entity etc.
 
