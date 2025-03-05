@@ -143,6 +143,7 @@ In each module we can have more than one controller, service, repository, entity
 6. Other rules
 
 - Do not use `import type`
+- For business errors use `DomainException`
 
 ## Useful links, please read them
 
