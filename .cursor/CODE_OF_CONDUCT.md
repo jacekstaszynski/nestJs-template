@@ -71,6 +71,10 @@ In each module we can have more than one controller, service, repository, entity
 
 5. Use classes for `responses`, `requests`, and `entities`.
 
+6. For all of the request and responses and domain objects use classValidator decorators.
+
+7. When mapping from request to domain object, use `class-transformer` library and all needed decorators use
+
 ## Best Practices
 
 1. Use `any` only when necessary, or in tests.
