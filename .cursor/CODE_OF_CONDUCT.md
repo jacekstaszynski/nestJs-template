@@ -140,7 +140,7 @@ In each module we can have more than one controller, service, repository, entity
 
 - Do not use `import type`
 
-## Links
+## Useful links, please read them
 
 - https://medium.com/swlh/return-early-pattern-3d18a41bba8
 - https://www.happycoders.eu/software-craftsmanship/hexagonal-architecture/
