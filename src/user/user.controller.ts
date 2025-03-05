@@ -10,18 +10,21 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  async createUser(@Body() data: CreateUserRequest): Promise<UserResponse> {
-    return this.userService.createUser(data);
+  async createUser(@Body() data: CreateUserRequest) {
+    this.userService.create(data);
+    return 'null' as any;
   }
 
   @Get(':id')
-  async getUserById(@Param('id') id: string): Promise<UserResponse> {
-    return this.userService.getUserById(id);
+  async getUserById(@Param('id') id: string) {
+    this.userService.getUserById(id);
+    return 'null' as any;
   }
 
   @Get()
-  async getUsers(@Query() filters: UserFilters): Promise<UserResponse[]> {
-    return this.userService.getUsers(filters);
+  async getUsers(@Query() filters: UserFilters) {
+    this.userService.getUsers(filters);
+    return 'null' as any;
   }
 
   @Put(':id')
@@ -29,7 +32,9 @@ export class UserController {
     @Param('id') id: string,
     @Body() data: Omit<UpdateUserRequest, 'id'>,
   ): Promise<UserResponse> {
-    return this.userService.updateUser({ id, ...data });
+    this.userService.updateUser({ id, ...data });
+
+    return 'null' as any;
   }
 
   @Delete(':id')

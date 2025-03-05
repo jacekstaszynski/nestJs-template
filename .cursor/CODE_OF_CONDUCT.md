@@ -127,6 +127,9 @@ In each module we can have more than one controller, service, repository, entity
      return update(id, someValue);
    }
    ```
+6. Other rules
+
+- Do not use `import type`
 
 ## Links
 

@@ -1,50 +1,35 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
+import { ConfigurationService } from '../config/config/configuration.service';
 import type { CreateUserRequest } from './types/create-user.request';
-import type { UpdateUserRequest } from './types/update-user.request';
-import type { UserFilters } from './types/user.filters';
-import type { UserResponse } from './types/user.response';
+import { UpdateUserRequest } from './types/update-user.request';
+import { UserFilters } from './types/user.filters';
 import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly configurationService: ConfigurationService,
+  ) {}
 
-  async createUser(data: CreateUserRequest): Promise<UserResponse> {
-    return this.userRepository.create(data);
+  async create(data: CreateUserRequest) {
+    return this.userRepository.create();
   }
 
-  async getUserById(id: string): Promise<UserResponse> {
-    const user = await this.userRepository.findById(id);
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    return user;
+  async getUserById(id: string) {
+    return await this.userRepository.findById(id);
   }
 
-  async getUsers(filters?: UserFilters): Promise<UserResponse[]> {
+  async getUsers(filters?: UserFilters) {
     return this.userRepository.findAll(filters);
   }
 
-  async updateUser(data: UpdateUserRequest): Promise<UserResponse> {
-    try {
-      return await this.userRepository.update(data);
-    } catch (error) {
-      if (error.message === 'User not found') {
-        throw new NotFoundException(error.message);
-      }
-      throw error;
-    }
+  async updateUser(data: UpdateUserRequest) {
+    return await this.userRepository.update(data);
   }
 
-  async deleteUser(id: string): Promise<void> {
-    try {
-      await this.userRepository.delete(id);
-    } catch (error) {
-      if (error.message === 'User not found') {
-        throw new NotFoundException(error.message);
-      }
-      throw error;
-    }
+  async deleteUser(id: string) {
+    await this.userRepository.delete(id);
   }
 }
